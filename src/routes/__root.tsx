@@ -32,7 +32,11 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
+      { title: "AlUlamaa Academy — Islamic Learning Platform" },
+      { name: "description", content: "Discover authentic Islamic knowledge through structured courses in Quranic Studies, Hadith, Fiqh, and Aqidah." },
+      { name: "author", content: "AlUlamaa Academy" },
+      { property: "og:title", content: "AlUlamaa Academy" },
+      { property: "og:description", content: "Discover authentic Islamic knowledge through structured courses." },
       { name: "description", content: "Lovable Generated Project" },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Lovable App" },
