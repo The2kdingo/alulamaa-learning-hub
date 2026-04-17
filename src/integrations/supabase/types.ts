@@ -14,67 +14,90 @@ export type Database = {
   }
   public: {
     Tables: {
-      email_queue: {
+      annotations: {
         Row: {
+          book_id: string
           created_at: string | null
-          email_type: string | null
-          html_body: string
+          data: Json | null
           id: string
-          status: string | null
-          subject: string
-          to_email: string
+          user_id: string
         }
         Insert: {
+          book_id: string
           created_at?: string | null
-          email_type?: string | null
-          html_body: string
+          data?: Json | null
           id?: string
-          status?: string | null
-          subject: string
-          to_email: string
+          user_id: string
         }
         Update: {
+          book_id?: string
           created_at?: string | null
-          email_type?: string | null
-          html_body?: string
+          data?: Json | null
           id?: string
-          status?: string | null
-          subject?: string
-          to_email?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "annotations_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      announcements: {
+        Row: {
+          body: string | null
+          created_at: string | null
+          created_by: string | null
+          id: string
+          title: string | null
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          title?: string | null
+        }
+        Update: {
+          body?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          title?: string | null
         }
         Relationships: []
       }
-      quiz_answers: {
+      attempts: {
         Row: {
-          created_at: string | null
+          answers: Json | null
           id: string
-          is_correct: boolean | null
-          participant_name: string
-          question_index: number
           quiz_id: string | null
-          selected_answer: number | null
+          score: number | null
+          timestamp: string | null
+          user_id: string | null
         }
         Insert: {
-          created_at?: string | null
+          answers?: Json | null
           id?: string
-          is_correct?: boolean | null
-          participant_name: string
-          question_index: number
           quiz_id?: string | null
-          selected_answer?: number | null
+          score?: number | null
+          timestamp?: string | null
+          user_id?: string | null
         }
         Update: {
-          created_at?: string | null
+          answers?: Json | null
           id?: string
-          is_correct?: boolean | null
-          participant_name?: string
-          question_index?: number
           quiz_id?: string | null
-          selected_answer?: number | null
+          score?: number | null
+          timestamp?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "quiz_answers_quiz_id_fkey"
+            foreignKeyName: "attempts_quiz_id_fkey"
             columns: ["quiz_id"]
             isOneToOne: false
             referencedRelation: "quizzes"
@@ -82,158 +105,132 @@ export type Database = {
           },
         ]
       }
-      quiz_participants: {
+      books: {
         Row: {
-          completed_at: string | null
+          created_at: string | null
           id: string
           name: string
-          percentage: number | null
-          quiz_id: string | null
-          score: number
-          total_questions: number
+          path: string
+          public: boolean | null
+          uploaded_by: string | null
         }
         Insert: {
-          completed_at?: string | null
+          created_at?: string | null
           id?: string
           name: string
-          percentage?: number | null
-          quiz_id?: string | null
-          score?: number
-          total_questions: number
+          path: string
+          public?: boolean | null
+          uploaded_by?: string | null
         }
         Update: {
-          completed_at?: string | null
+          created_at?: string | null
           id?: string
           name?: string
-          percentage?: number | null
-          quiz_id?: string | null
-          score?: number
-          total_questions?: number
+          path?: string
+          public?: boolean | null
+          uploaded_by?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "quiz_participants_quiz_id_fkey"
-            columns: ["quiz_id"]
-            isOneToOne: false
-            referencedRelation: "quizzes"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          accepted_terms_at: string | null
+          avatar_url: string | null
+          bio: string | null
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          is_admin: boolean | null
+        }
+        Insert: {
+          accepted_terms_at?: string | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id: string
+          is_admin?: boolean | null
+        }
+        Update: {
+          accepted_terms_at?: string | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          is_admin?: boolean | null
+        }
+        Relationships: []
       }
       quizzes: {
         Row: {
-          content: string
           created_at: string | null
-          created_by_email: string
+          created_by: string | null
           id: string
-          question_count: number
-          questions: Json
-          share_id: string
-          title: string
-          updated_at: string | null
+          questions: Json | null
+          title: string | null
         }
         Insert: {
-          content: string
           created_at?: string | null
-          created_by_email: string
+          created_by?: string | null
           id?: string
-          question_count: number
-          questions: Json
-          share_id: string
-          title: string
-          updated_at?: string | null
+          questions?: Json | null
+          title?: string | null
         }
         Update: {
-          content?: string
           created_at?: string | null
-          created_by_email?: string
+          created_by?: string | null
           id?: string
-          question_count?: number
-          questions?: Json
-          share_id?: string
-          title?: string
-          updated_at?: string | null
+          questions?: Json | null
+          title?: string | null
         }
         Relationships: []
       }
-      system_logs: {
+      user_uploads: {
         Row: {
-          action: string
-          details: Json | null
-          id: string
-          timestamp: string | null
-          user_email: string | null
-        }
-        Insert: {
-          action: string
-          details?: Json | null
-          id?: string
-          timestamp?: string | null
-          user_email?: string | null
-        }
-        Update: {
-          action?: string
-          details?: Json | null
-          id?: string
-          timestamp?: string | null
-          user_email?: string | null
-        }
-        Relationships: []
-      }
-      users: {
-        Row: {
-          bio: string | null
           created_at: string | null
-          email: string
-          email_verified: boolean | null
           id: string
-          interests: string[] | null
-          location: string | null
-          name: string
-          phone: string | null
-          phone_verified: boolean | null
-          profession_level: string | null
-          profile_picture_url: string | null
-          updated_at: string | null
+          name: string | null
+          path: string | null
+          user_id: string | null
         }
         Insert: {
-          bio?: string | null
           created_at?: string | null
-          email: string
-          email_verified?: boolean | null
-          id: string
-          interests?: string[] | null
-          location?: string | null
-          name: string
-          phone?: string | null
-          phone_verified?: boolean | null
-          profession_level?: string | null
-          profile_picture_url?: string | null
-          updated_at?: string | null
+          id?: string
+          name?: string | null
+          path?: string | null
+          user_id?: string | null
         }
         Update: {
-          bio?: string | null
           created_at?: string | null
-          email?: string
-          email_verified?: boolean | null
           id?: string
-          interests?: string[] | null
-          location?: string | null
-          name?: string
-          phone?: string | null
-          phone_verified?: boolean | null
-          profession_level?: string | null
-          profile_picture_url?: string | null
-          updated_at?: string | null
+          name?: string | null
+          path?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
     }
     Views: {
-      [_ in never]: never
+      recent_announcements: {
+        Row: {
+          body: string | null
+          created_at: string | null
+          created_by: string | null
+          id: string | null
+          title: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      [_ in never]: never
+      set_accepted_terms: {
+        Args: { accepted: boolean; uid: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
