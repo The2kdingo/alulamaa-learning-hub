@@ -30,10 +30,10 @@ const courses = [
 ];
 
 const quickLinks = [
-  { label: "Prayer Times", icon: Calendar, color: "bg-primary/10 text-primary" },
-  { label: "Islamic Calendar", icon: Calendar, color: "bg-gold/20 text-gold-foreground" },
-  { label: "Community", icon: Users, color: "bg-warm/10 text-warm" },
-  { label: "Resources", icon: Library, color: "bg-primary/10 text-primary" },
+  { label: "Prayer Times", icon: Calendar, to: "/prayer", color: "bg-primary/10 text-primary" },
+  { label: "Tasbih", icon: Heart, to: "/tasbih", color: "bg-gold/20 text-gold-foreground" },
+  { label: "Community", icon: Users, to: "/community", color: "bg-warm/10 text-warm" },
+  { label: "Resources", icon: Library, to: "/resources", color: "bg-primary/10 text-primary" },
 ];
 
 function Index() {
@@ -92,16 +92,17 @@ function Index() {
 
           {/* Quick stats */}
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
-            {quickLinks.map(({ label, icon: Icon, color }) => (
-              <button
+            {quickLinks.map(({ label, icon: Icon, to, color }) => (
+              <Link
                 key={label}
+                to={to}
                 className="flex items-center gap-3 bg-primary-foreground/10 backdrop-blur-sm rounded-xl px-4 py-3 text-primary-foreground hover:bg-primary-foreground/20 transition-all duration-200 text-left"
               >
                 <div className={`w-9 h-9 rounded-lg flex items-center justify-center bg-primary-foreground/20`}>
                   <Icon size={18} />
                 </div>
                 <span className="text-sm font-medium">{label}</span>
-              </button>
+              </Link>
             ))}
           </div>
         </div>
