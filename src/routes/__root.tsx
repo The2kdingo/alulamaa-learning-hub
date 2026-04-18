@@ -37,10 +37,13 @@ export const Route = createRootRoute({
       { name: "author", content: "AlUlamaa Academy" },
       { property: "og:title", content: "AlUlamaa Academy" },
       { property: "og:description", content: "Discover authentic Islamic knowledge through structured courses." },
+      { name: "theme-color", content: "#10b981" },
     ],
     links: [
       { rel: "stylesheet", href: indexCss },
       { rel: "stylesheet", href: appCss },
+      { rel: "manifest", href: "/manifest.json" },
+      { rel: "apple-touch-icon", href: "/icon-192.png" },
     ],
   }),
   shellComponent: RootShell,

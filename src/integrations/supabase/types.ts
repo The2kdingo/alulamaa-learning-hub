@@ -76,13 +76,6 @@ export type Database = {
             referencedRelation: "announcements"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "announcement_replies_announcement_id_fkey"
-            columns: ["announcement_id"]
-            isOneToOne: false
-            referencedRelation: "recent_announcements"
-            referencedColumns: ["id"]
-          },
         ]
       }
       announcements: {
@@ -562,16 +555,7 @@ export type Database = {
       }
     }
     Views: {
-      recent_announcements: {
-        Row: {
-          body: string | null
-          created_at: string | null
-          created_by: string | null
-          id: string | null
-          title: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       has_role: {
