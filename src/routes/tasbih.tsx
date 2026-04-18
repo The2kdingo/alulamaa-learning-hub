@@ -42,7 +42,7 @@ function TasbihPage() {
         }).select().single();
         return data;
       }));
-      list = seeded.filter(Boolean);
+      list = seeded.filter((x): x is NonNullable<typeof x> => x !== null);
     }
     setCounters(list);
     if (!active && list.length > 0) setActive(list[0]);

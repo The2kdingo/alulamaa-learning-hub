@@ -9,11 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TasbihRouteImport } from './routes/tasbih'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PrayerRouteImport } from './routes/prayer'
+import { Route as DuaRouteImport } from './routes/dua'
 import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as QSlugRouteImport } from './routes/q.$slug'
+import { Route as LessonIdRouteImport } from './routes/lesson.$id'
+import { Route as QSlugResultsRouteImport } from './routes/q.$slug.results'
 
+const TasbihRoute = TasbihRouteImport.update({
+  id: '/tasbih',
+  path: '/tasbih',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuizRoute = QuizRouteImport.update({
   id: '/quiz',
   path: '/quiz',
@@ -24,9 +43,29 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrayerRoute = PrayerRouteImport.update({
+  id: '/prayer',
+  path: '/prayer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DuaRoute = DuaRouteImport.update({
+  id: '/dua',
+  path: '/dua',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CoursesRoute = CoursesRouteImport.update({
   id: '/courses',
   path: '/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -34,43 +73,147 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QSlugRoute = QSlugRouteImport.update({
+  id: '/q/$slug',
+  path: '/q/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LessonIdRoute = LessonIdRouteImport.update({
+  id: '/lesson/$id',
+  path: '/lesson/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QSlugResultsRoute = QSlugResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => QSlugRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/community': typeof CommunityRoute
   '/courses': typeof CoursesRoute
+  '/dua': typeof DuaRoute
+  '/prayer': typeof PrayerRoute
   '/profile': typeof ProfileRoute
   '/quiz': typeof QuizRoute
+  '/resources': typeof ResourcesRoute
+  '/tasbih': typeof TasbihRoute
+  '/lesson/$id': typeof LessonIdRoute
+  '/q/$slug': typeof QSlugRouteWithChildren
+  '/q/$slug/results': typeof QSlugResultsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/community': typeof CommunityRoute
   '/courses': typeof CoursesRoute
+  '/dua': typeof DuaRoute
+  '/prayer': typeof PrayerRoute
   '/profile': typeof ProfileRoute
   '/quiz': typeof QuizRoute
+  '/resources': typeof ResourcesRoute
+  '/tasbih': typeof TasbihRoute
+  '/lesson/$id': typeof LessonIdRoute
+  '/q/$slug': typeof QSlugRouteWithChildren
+  '/q/$slug/results': typeof QSlugResultsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/community': typeof CommunityRoute
   '/courses': typeof CoursesRoute
+  '/dua': typeof DuaRoute
+  '/prayer': typeof PrayerRoute
   '/profile': typeof ProfileRoute
   '/quiz': typeof QuizRoute
+  '/resources': typeof ResourcesRoute
+  '/tasbih': typeof TasbihRoute
+  '/lesson/$id': typeof LessonIdRoute
+  '/q/$slug': typeof QSlugRouteWithChildren
+  '/q/$slug/results': typeof QSlugResultsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/courses' | '/profile' | '/quiz'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/community'
+    | '/courses'
+    | '/dua'
+    | '/prayer'
+    | '/profile'
+    | '/quiz'
+    | '/resources'
+    | '/tasbih'
+    | '/lesson/$id'
+    | '/q/$slug'
+    | '/q/$slug/results'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/courses' | '/profile' | '/quiz'
-  id: '__root__' | '/' | '/courses' | '/profile' | '/quiz'
+  to:
+    | '/'
+    | '/admin'
+    | '/community'
+    | '/courses'
+    | '/dua'
+    | '/prayer'
+    | '/profile'
+    | '/quiz'
+    | '/resources'
+    | '/tasbih'
+    | '/lesson/$id'
+    | '/q/$slug'
+    | '/q/$slug/results'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/community'
+    | '/courses'
+    | '/dua'
+    | '/prayer'
+    | '/profile'
+    | '/quiz'
+    | '/resources'
+    | '/tasbih'
+    | '/lesson/$id'
+    | '/q/$slug'
+    | '/q/$slug/results'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  CommunityRoute: typeof CommunityRoute
   CoursesRoute: typeof CoursesRoute
+  DuaRoute: typeof DuaRoute
+  PrayerRoute: typeof PrayerRoute
   ProfileRoute: typeof ProfileRoute
   QuizRoute: typeof QuizRoute
+  ResourcesRoute: typeof ResourcesRoute
+  TasbihRoute: typeof TasbihRoute
+  LessonIdRoute: typeof LessonIdRoute
+  QSlugRoute: typeof QSlugRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tasbih': {
+      id: '/tasbih'
+      path: '/tasbih'
+      fullPath: '/tasbih'
+      preLoaderRoute: typeof TasbihRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quiz': {
       id: '/quiz'
       path: '/quiz'
@@ -85,11 +228,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/prayer': {
+      id: '/prayer'
+      path: '/prayer'
+      fullPath: '/prayer'
+      preLoaderRoute: typeof PrayerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dua': {
+      id: '/dua'
+      path: '/dua'
+      fullPath: '/dua'
+      preLoaderRoute: typeof DuaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/courses': {
       id: '/courses'
       path: '/courses'
       fullPath: '/courses'
       preLoaderRoute: typeof CoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -99,14 +270,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/q/$slug': {
+      id: '/q/$slug'
+      path: '/q/$slug'
+      fullPath: '/q/$slug'
+      preLoaderRoute: typeof QSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lesson/$id': {
+      id: '/lesson/$id'
+      path: '/lesson/$id'
+      fullPath: '/lesson/$id'
+      preLoaderRoute: typeof LessonIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/q/$slug/results': {
+      id: '/q/$slug/results'
+      path: '/results'
+      fullPath: '/q/$slug/results'
+      preLoaderRoute: typeof QSlugResultsRouteImport
+      parentRoute: typeof QSlugRoute
+    }
   }
 }
 
+interface QSlugRouteChildren {
+  QSlugResultsRoute: typeof QSlugResultsRoute
+}
+
+const QSlugRouteChildren: QSlugRouteChildren = {
+  QSlugResultsRoute: QSlugResultsRoute,
+}
+
+const QSlugRouteWithChildren = QSlugRoute._addFileChildren(QSlugRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  CommunityRoute: CommunityRoute,
   CoursesRoute: CoursesRoute,
+  DuaRoute: DuaRoute,
+  PrayerRoute: PrayerRoute,
   ProfileRoute: ProfileRoute,
   QuizRoute: QuizRoute,
+  ResourcesRoute: ResourcesRoute,
+  TasbihRoute: TasbihRoute,
+  LessonIdRoute: LessonIdRoute,
+  QSlugRoute: QSlugRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

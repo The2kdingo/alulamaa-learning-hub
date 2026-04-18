@@ -73,7 +73,7 @@ function QuizPage() {
       }).select("public_slug").single();
       if (error) { toast.error(error.message); return; }
       toast.success(`Generated ${questions.length} questions!`);
-      navigate({ to: "/q/$slug", params: { slug: created.public_slug } });
+      navigate({ to: "/q/$slug", params: { slug: created.public_slug ?? "" } });
     } finally { setAiBusy(false); }
   };
 
@@ -95,7 +95,7 @@ function QuizPage() {
     }).select("public_slug").single();
     if (error) { toast.error(error.message); return; }
     toast.success("Quiz created!");
-    navigate({ to: "/q/$slug", params: { slug: created.public_slug } });
+    navigate({ to: "/q/$slug", params: { slug: created.public_slug ?? "" } });
   };
 
   const copyLink = (slug: string) => {

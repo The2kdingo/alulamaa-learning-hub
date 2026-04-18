@@ -135,7 +135,7 @@ function LessonPage() {
       );
 
       toast.success(`Generated ${questions.length} questions!`);
-      navigate({ to: "/q/$slug", params: { slug: created.public_slug } });
+      navigate({ to: "/q/$slug", params: { slug: created.public_slug ?? "" } });
     } catch (e: any) {
       toast.error(e.message ?? "Error");
     } finally {
