@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SplashScreen } from "@/components/SplashScreen";
 import { AuthPage } from "@/components/AuthPage";
+import { IslamicLoader } from "@/components/IslamicLoader";
 import { Navbar } from "@/components/Navbar";
 import { CourseCard } from "@/components/CourseCard";
 import { BookOpen, Calendar, Users, Library, ArrowRight } from "lucide-react";
@@ -65,7 +66,7 @@ function Index() {
   }, []);
 
   if (showSplash) return <SplashScreen onComplete={handleSplashComplete} />;
-  if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center bg-background"><IslamicLoader size="lg" label="Preparing your journey..." /></div>;
   if (!session) return <AuthPage onAuthSuccess={handleAuthSuccess} />;
 
   return (
