@@ -43,8 +43,6 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
     ],
     links: [
-      { rel: "stylesheet", href: "/index.css" },
-      { rel: "stylesheet", href: "/src/styles.css" },
       { rel: "manifest", href: "/manifest.json" },
       { rel: "icon", href: "/favicon.ico" },
       { rel: "apple-touch-icon", href: "/icon-192.png" },

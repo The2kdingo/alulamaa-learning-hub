@@ -1,0 +1,30 @@
+import path from 'path'
+import { fileURLToPath } from 'url'
+import { execSync } from 'child_process'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+// Get environment variables (fallback to .env.example values if not set)
+const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://ztrzfpzlcvsamqyxpmpe.supabase.co'
+const supabaseKey = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0cnpmcHpsY3ZzYW1xeXhwbXBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3NjAxMzMsImV4cCI6MjA5MTMzNjEzM30.K7Oe8xbXnZmDAXbLspksVs0cvXSaEuTFbQuNQFY_BT4'
+
+// Build the esbuild command with environment variable definitions
+const defines = [
+  `--define:import.meta.env.VITE_SUPABASE_URL='${supabaseUrl}'`,
+  `--define:import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY='${supabaseKey}'`,
+]
+
+const baseCommand = 'esbuild src/main.tsx --bundle --outdir=dist/client --format=esm --splitting --external:/__ --external:pdfjs-dist --external:tailwindcss --external:tw-animate-css --platform=browser --define:process.env.NODE_ENV=process.env.NODE_ENV --loader:.png=file --loader:.css=text'
+
+const command = `${baseCommand} ${defines.join(' ')}`
+
+try {
+  console.log('Building client bundle...')
+  execSync(command, { stdio: 'inherit' })
+  console.log('Generating HTML...')
+  execSync('node scripts/build-html.js', { stdio: 'inherit' })
+  console.log('✓ Client build completed successfully')
+} catch (error) {
+  console.error('✘ Build failed:', error.message)
+  process.exit(1)
+}

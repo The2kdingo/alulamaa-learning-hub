@@ -6,7 +6,7 @@ import { AuthPage } from "@/components/AuthPage";
 import { IslamicLoader } from "@/components/IslamicLoader";
 import { Navbar } from "@/components/Navbar";
 import { CourseCard } from "@/components/CourseCard";
-import { BookOpen, Calendar, Users, Library, ArrowRight } from "lucide-react";
+import { BookOpen, Calendar, Users, Library, ArrowRight, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Session } from "@supabase/supabase-js";
 

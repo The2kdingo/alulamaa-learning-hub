@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build:client && npm run build:server && npm run copy:assets",
-    "build:client": "esbuild src/main.tsx --bundle --outdir=dist/client --format=esm --splitting --external:/__ --external:pdfjs-dist --external:tailwindcss --external:tw-animate-css --platform=browser --define:process.env.NODE_ENV=process.env.NODE_ENV --loader:.png=file --loader:.css=text && node scripts/build-html.js",
+    "build:client": "node scripts/build-with-env.js",
     "build:server": "esbuild server.ts --bundle --outdir=dist/server --format=esm --platform=node --define:process.env.NODE_ENV=process.env.NODE_ENV --external:pdfjs-dist --external:express --loader:.png=file --loader:.css=text",
     "copy:assets": "node scripts/copy-assets.js",
     "preview": "vite preview",
