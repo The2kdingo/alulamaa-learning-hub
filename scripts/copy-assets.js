@@ -12,6 +12,11 @@ function copyDir(src, dest) {
   const files = fs.readdirSync(src)
   
   for (const file of files) {
+    // Skip files we don't want to copy
+    if (file === 'index.html') {
+      continue
+    }
+
     const srcPath = path.join(src, file)
     const destPath = path.join(dest, file)
     
