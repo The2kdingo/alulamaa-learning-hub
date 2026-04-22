@@ -16,7 +16,7 @@ const htmlContent = `<!doctype html>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/main.js"><\/script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
 `

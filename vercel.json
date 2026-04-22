@@ -8,5 +8,11 @@
     "env": {
        "VITE_SUPABASE_URL": "$VITE_SUPABASE_URL",
        "VITE_SUPABASE_PUBLISHABLE_KEY": "$VITE_SUPABASE_PUBLISHABLE_KEY"  }
+  },
+  "functions": {
+  "server.ts": {
+    "runtime": "nodejs18.x"
   }
+}
+
 }

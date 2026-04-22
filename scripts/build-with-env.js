@@ -8,13 +8,16 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://ztrzfpzlcvsamqyxpmpe.supabase.co'
 const supabaseKey = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0cnpmcHpsY3ZzYW1xeXhwbXBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3NjAxMzMsImV4cCI6MjA5MTMzNjEzM30.K7Oe8xbXnZmDAXbLspksVs0cvXSaEuTFbQuNQFY_BT4'
 
+// Escape double quotes for shell command
+const escapeForShell = (str) => str.replace(/"/g, '\\"')
+
 // Build the esbuild command with environment variable definitions
 const defines = [
-  `--define:import.meta.env.VITE_SUPABASE_URL='${supabaseUrl}'`,
-  `--define:import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY='${supabaseKey}'`,
+  `--define:import.meta.env.VITE_SUPABASE_URL="${escapeForShell(supabaseUrl)}"`,
+  `--define:import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY="${escapeForShell(supabaseKey)}"`,
 ]
 
-const baseCommand = 'esbuild src/main.tsx --bundle --outdir=dist/client --format=esm --splitting --external:/__ --external:pdfjs-dist --external:tailwindcss --external:tw-animate-css --platform=browser --define:process.env.NODE_ENV=process.env.NODE_ENV --loader:.png=file --loader:.css=text'
+const baseCommand = 'esbuild src/main.tsx --bundle --outdir=dist/client --format=esm --splitting --external:/__ --external:pdfjs-dist --external:tailwindcss --external:tw-animate-css --platform=browser --define:process.env.NODE_ENV="production" --loader:.png=file --loader:.css=text'
 
 const command = `${baseCommand} ${defines.join(' ')}`
 
