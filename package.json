@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:server && npm run build:client",
-    "build:client": "esbuild src/main.tsx --bundle --outdir=dist/client --format=esm --splitting --external:/__ --external:pdfjs-dist --external:tailwindcss --external:tw-animate-css --platform=browser --define:process.env.NODE_ENV=process.env.NODE_ENV --loader:.png=file --loader:.css=text",
-    "build:server": "esbuild server.ts src/entry.server.tsx --bundle --outdir=dist/server --format=esm --platform=node --define:process.env.NODE_ENV=process.env.NODE_ENV --external:pdfjs-dist --loader:.png=file --loader:.css=text",
+    "build": "npm run build:client && npm run build:server && npm run copy:assets",
+    "build:client": "esbuild src/main.tsx --bundle --outdir=dist/client --format=esm --splitting --external:/__ --external:pdfjs-dist --external:tailwindcss --external:tw-animate-css --platform=browser --define:process.env.NODE_ENV=process.env.NODE_ENV --loader:.png=file --loader:.css=text && node scripts/build-html.js",
+    "build:server": "esbuild server.ts --bundle --outdir=dist/server --format=esm --platform=node --define:process.env.NODE_ENV=process.env.NODE_ENV --external:pdfjs-dist --external:express --loader:.png=file --loader:.css=text",
+    "copy:assets": "node scripts/copy-assets.js",
     "preview": "vite preview",
     "lint": "eslint ."
   },
@@ -49,6 +50,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
+    "express": "^4.18.2",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.575.0",
     "pdfjs-dist": "4.8.69",
@@ -68,6 +70,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
+    "@types/express": "^4.17.17",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
