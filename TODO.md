@@ -1,15 +1,25 @@
-# TODO Updates - Client Entry & CSS Fixed ✅
+# Vercel Deployment TODO
 
-Previous TODOs complete per original file.
+## [x] 1. Vercel Settings (Project Settings > General)
+- Framework Preset: **Vite** (or Other)
+- Build Command: `npm run build`
+- Output Directory: `dist`
+- Root Directory: `/`
+- Install Command: `npm install` (default)
 
-**New Fixes Applied:**
-1. [x] Created src/entry.client.tsx with proper ReactDOM hydrateRoot + RouterProvider.
-2. [x] Fixed public/index.html: Removed invalid /src/styles.css link (CSS wired via __root.tsx).
-3. [x] Confirmed vite.config.ts port 3000.
-4. [ ] Install deps: `bun install`
-5. [ ] Run dev server: `bun run dev`
-6. [ ] Test http://localhost:3000
+## [ ] 2. Add Environment Variables (Settings > Environment Variables)
+| Key | Value Source |
+|----|--------------|
+| SUPABASE_URL | Supabase > Settings > API > URL (e.g., https://yourproject.supabase.co) |
+| SUPABASE_PUBLISHABLE_KEY | Supabase > Settings > API > anon/public key |
+| SUPABASE_SERVICE_ROLE_KEY | Supabase > Settings > API > service_role key |
 
-**Next:** Run the commands below to start the app. Add .env.local for Supabase if login needed.
+**Add to all environments (Production/Preview/Development).**
 
-App should now bootstrap correctly!
+## [ ] 3. Deploy & Test
+- Trigger redeploy
+- Check build logs (should run esbuild → dist/)
+- Test site: auth, quizzes, Supabase queries
+
+## [ ] 4. Optional: Custom Domain, etc.
+
