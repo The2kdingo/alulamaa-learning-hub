@@ -7,7 +7,7 @@ export async function render(url: string, context = {}) {
 
   // Handle SSR rendering
   const html = renderToString(
-    <RouterProvider router={router} context={context} urlPrefix="" />
+    <RouterProvider router={router} context={context} />
   );
 
   return { html };

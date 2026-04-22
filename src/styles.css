@@ -167,6 +167,7 @@
 @layer utilities {
   .glass {
     background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
   }
