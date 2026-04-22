@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useUserRole } from "@/hooks/useUserRole";
-import logoImage from "@/assets/alulamaa-logo.png";
+// import logoImage from "../assets/alulamaa-logo.png"; // Disabled for server
 
 export function Navbar() {
   const location = useLocation();
@@ -41,7 +41,10 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2.5">
-              <img src={logoImage} alt="AlUlamaa" width={36} height={36} />
+<div className="w-[36px] h-[36px] bg-gradient-to-br from-primary to-secondary rounded-lg shadow-gold flex items-center justify-center">
+  A
+</div>
+
               <span className="font-heading font-bold text-lg text-foreground">AlUlamaa</span>
             </Link>
 

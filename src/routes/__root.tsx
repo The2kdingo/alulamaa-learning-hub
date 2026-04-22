@@ -1,8 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
-import appCss from "../styles.css?url";
-import indexCss from "../../index.css?url";
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -46,18 +43,15 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
     ],
     links: [
-      { rel: "stylesheet", href: indexCss },
-      { rel: "stylesheet", href: appCss },
+      { rel: "stylesheet", href: "/index.css" },
+      { rel: "stylesheet", href: "/src/styles.css" },
       { rel: "manifest", href: "/manifest.json" },
       { rel: "icon", href: "/favicon.ico" },
-    ],
-      { rel: "manifest", href: "/manifest.json" },
       { rel: "apple-touch-icon", href: "/icon-192.png" },
     ],
   }),
-  shellComponent: RootShell,
-  component: RootComponent,
   notFoundComponent: NotFoundComponent,
+  component: RootComponent,
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
@@ -75,5 +69,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <RootShell>
+      <Outlet />
+    </RootShell>
+  );
 }

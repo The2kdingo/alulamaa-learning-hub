@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import logoImage from "@/assets/alulamaa-logo.png";
+// import logoImage from "../assets/alulamaa-logo.png"; // Disabled for server build
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -27,13 +27,8 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
 
       {/* Logo */}
       <div className={`relative transition-all duration-1000 ${phase !== "logo" ? "animate-float" : ""}`}>
-        <img
-          src={logoImage}
-          alt="AlUlamaa Academy"
-          width={180}
-          height={180}
-          className={`drop-shadow-2xl transition-all duration-1000 ${phase === "logo" ? "animate-scale-in" : ""}`}
-        />
+<div className="w-45 h-45 bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-gold animate-spin-slow" />
+
       </div>
 
       {/* Text */}

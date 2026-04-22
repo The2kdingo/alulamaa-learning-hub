@@ -52,11 +52,11 @@ function QuizPage() {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) { toast.error("Sign in first"); setAiBusy(false); return; }
-      const resp = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-quiz`, {
+      const resp = await fetch(`${process.env.SUPABASE_URL!}/functions/v1/generate-quiz`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${process.env.SUPABASE_PUBLISHABLE_KEY!}`,
         },
         body: JSON.stringify(ai),
       });
@@ -225,7 +225,7 @@ function QuizPage() {
                   />
                   {q.options.map((opt, oi) => (
                     <div key={oi} className="flex items-center gap-2">
-                      <input
+                      <Input
                         type="radio"
                         name={`correct-${i}`}
                         checked={q.correct_index === oi}

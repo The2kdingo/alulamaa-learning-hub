@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Mail, Lock, User as UserIcon, Eye, EyeOff, Sparkles } from "lucide-react";
 import { IslamicLoader } from "@/components/IslamicLoader";
-import logoImage from "@/assets/alulamaa-logo.png";
+// import logoImage from "@/assets/alulamaa-logo.png"; // Disabled for server
 
 type Mode = "login" | "signup" | "forgot";
 
@@ -109,7 +109,10 @@ export function AuthPage({ onAuthSuccess }: { onAuthSuccess: () => void }) {
             <div className="flex flex-col items-center mb-6">
               <div className="relative mb-3">
                 <div className="absolute inset-0 rounded-full bg-gold/20 blur-xl animate-pulse-glow" />
-                <img src={logoImage} alt="AlUlamaa" width={72} height={72} className="relative" />
+                <div className="w-18 h-18 bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-gold flex items-center justify-center text-2xl font-heading">
+  A
+</div>
+
               </div>
               <h2 className="text-2xl font-heading font-bold text-foreground animate-fade-in-up">
                 {titles[mode].title}

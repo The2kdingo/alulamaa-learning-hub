@@ -1,8 +1,8 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
+// import "react-pdf/dist/Page/AnnotationLayer.css"; // SSR ignore
+// import "react-pdf/dist/Page/TextLayer.css"; // SSR ignore
 import { supabase } from "@/integrations/supabase/client";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
@@ -102,11 +102,11 @@ function LessonPage() {
     setGenerating(true);
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      const resp = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-quiz`, {
+      const resp = await fetch(`${process.env.SUPABASE_URL!}/functions/v1/generate-quiz`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${process.env.SUPABASE_PUBLISHABLE_KEY!}`,
         },
         body: JSON.stringify({ title: topic || lesson?.title || "Lesson", context: selection, count: 15 }),
       });
