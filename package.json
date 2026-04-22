@@ -1,13 +1,14 @@
 {
   "name": "tanstack_start_ts",
   "private": true,
+  "main": "dist/server/server.js",
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "npm run build:server && npm run build:client",
     "build:client": "esbuild src/main.tsx --bundle --outdir=dist/client --format=esm --splitting --external:/__ --external:pdfjs-dist --platform=browser --define:process.env.NODE_ENV=process.env.NODE_ENV --loader:.png=file",
-    "build:server": "esbuild src/entry.server.tsx --bundle --outdir=dist/server --format=esm --platform=node --define:process.env.NODE_ENV=process.env.NODE_ENV --external:pdfjs-dist --loader:.png=file --loader:.css=text",
+    "build:server": "esbuild server.ts src/entry.server.tsx --bundle --outdir=dist/server --format=esm --platform=node --define:process.env.NODE_ENV=process.env.NODE_ENV --external:pdfjs-dist --loader:.png=file --loader:.css=text",
     "preview": "vite preview",
     "lint": "eslint ."
   },
