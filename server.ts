@@ -10,10 +10,19 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 // Serve static files from dist/client
-app.use(express.static(path.join(__dirname, 'dist/client')))
+app.use(express.static(path.join(__dirname, 'dist/client'), {
+  maxAge: '1d',
+  etag: false,
+  lastModified: false
+}))
 
-// Serve the index.html for all non-file requests (SPA)
+// Handle SPA routing - only serve index.html for navigation requests
 app.get('*', (req, res) => {
+  // Don't serve index.html for requests with file extensions
+  if (req.path.includes('.')) {
+    return res.status(404).send('Not found')
+  }
+
   try {
     const indexPath = path.join(__dirname, 'dist/client/index.html')
     if (fs.existsSync(indexPath)) {
