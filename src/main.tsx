@@ -1,18 +1,5 @@
-import React, { StrictMode } from "react";
-import { hydrateRoot } from "react-dom/client";
-import { RouterProvider } from "@tanstack/react-router";
-import { getRouter } from "./router";
-import { Toaster } from "@/components/ui/sonner";
+// DEPRECATED: Client entry moved to src/entry.client.tsx for SSR compatibility
+// This file is no longer actively used in production builds
+// Build scripts now target entry.client.tsx directly
 
-
-const router = getRouter();
-
-const queryClient = (router.options.context as { queryClient?: any }).queryClient ?? undefined;
-
-hydrateRoot(
-  document.getElementById("root")!,
-  <StrictMode>
-    <RouterProvider router={router} context={{ queryClient }} />
-    <Toaster />
-  </StrictMode>
-);
+console.warn('src/main.tsx is deprecated - hydration handled by src/entry.client.tsx');

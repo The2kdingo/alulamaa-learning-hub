@@ -7,9 +7,11 @@
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
+    <script>window.__INITIAL_DATA__ = {};</script>
   </head>
   <body>
-    <div id="root"></div>
-<!-- Build script will copy ssr-template.html --><script type="module" src="/src/entry.client.tsx"></script>
+    <div id="root"><!--ssr-placeholder--></div>
+    <script type="module" src="/src/entry.client.tsx"></script>
   </body>
 </html>
+
