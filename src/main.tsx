@@ -3,7 +3,7 @@ import { hydrateRoot } from "react-dom/client";
 import { RouterProvider } from "@tanstack/react-router";
 import { getRouter } from "./router";
 import { Toaster } from "@/components/ui/sonner";
-import "./styles.css";
+
 
 const router = getRouter();
 
