@@ -10,11 +10,14 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static assets
-app.use('/_assets', express.static(path.join(__dirname, 'dist/client'), {
+// Serve public assets at root (manifest, favicon)
+app.use(express.static(path.join(__dirname, 'dist/client'), {
   maxAge: '1d',
   etag: false,
 }));
+
+// Client bundle at /_assets/src/*
+app.use('/_assets/src', express.static(path.join(__dirname, 'dist/client/src'))); 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,8 +26,11 @@ app.use(express.urlencoded({ extended: true }));
 app.get('*', async (req, res) => {
   try {
     // Skip API/static requests
-    if (req.path.match(/\.(js|css|png|jpg|ico|svg|woff2?|ttf)$/)) {
-      return res.status(404).send('Not found');
+if (req.path.match(/^\/_assets\/.*\.(js|css|map)$/)) {
+      return next();
+    }
+    if (req.path.match(/\.(png|jpg|ico|svg|woff2?|ttf|json)$/)) {
+      return next();
     }
 
     // Render SSR
