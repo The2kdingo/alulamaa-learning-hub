@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "npm run build:client && npm run build:server && npm run copy:assets",
     "build:client": "node scripts/build-with-env.js",
-    "build:server": "esbuild server.ts --bundle --outdir=dist/server --format=esm --platform=node --define:process.env.NODE_ENV=process.env.NODE_ENV --external:pdfjs-dist --external:express --loader:.png=file --loader:.css=text",
+"build:server": "esbuild server.ts src/entry.server.tsx --bundle --outdir=dist/server --format=esm --platform=node --define:process.env.NODE_ENV=\\\"production\\\" --external:pdfjs-dist --external:express --loader:.png=file --loader:.css=text --external:@tanstack/react-router --external:@tanstack/react-query",
     "copy:assets": "node scripts/copy-assets.js",
     "preview": "vite preview",
     "lint": "eslint ."
